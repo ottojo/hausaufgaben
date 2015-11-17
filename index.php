@@ -22,7 +22,7 @@
 		<input type="text" name="email"> <br>
 
 		password: <br>
-		<input type="password" name="password"> <br>
+		<input type="password" name="password">
 
 		<input type="submit" value="Log in">
 

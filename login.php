@@ -7,7 +7,7 @@
 <?php 
 
 $email= $_POST["email"];
-$password= $_POST["password"];
+$userPassword= $_POST["password"];
 
 $servername = "localhost";
 $username = "website";
@@ -16,7 +16,7 @@ $dbname = "hausaufgaben";
 
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
-	
+
 
 if($email != "")
 {
@@ -24,19 +24,30 @@ if($email != "")
 	
 	$sql = "SELECT uHashedPassword FROM users WHERE uEmail='$email'";
 		
-	echo($sql);
+	echo("Query: $sql");
 	echo("<br>");
 
 	$resultHashedPassword = $conn->query($sql);
 	
+	echo ("Password: $userPassword");
+	echo ("<br>");
 	
 	
 	
 	
 	if ($resultHashedPassword->num_rows > 0) 
 	{
+		$hashedPassword = $resultHashedPassword->fetch_assoc()["uHashedPassword"];
+		echo(" Got Password hash from Database: $hashedPassword");
+		echo("<br>");
 		
-		if(password_verify($password, $resultHashedPassword->fetch_assoc()["uHashedPassword"]))
+		echo("PASSWORDS IDENTICAL: " . password_verify($userPassword, $hashedPassword));
+		
+		echo("<br>");
+		echo("<br>");
+		echo("<br>");
+		
+		if(password_verify($userPassword, $hashedPassword))
 		{
 			echo("Login successfull");
 		}
