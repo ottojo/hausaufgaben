@@ -1,5 +1,6 @@
 <?php
 
+
 	function hasLoginData()
 	{
 		if(!empty($_POST) && $_POST["firstname"] != "" && $_POST["lastname"] != "" && $_POST["email"] != "" && $_POST["password"] != "")
@@ -34,6 +35,7 @@
 	
 	<?php
 	
+		require("sqlconnection.php");
 	
 		echo("<br>");
 		echo("<br>");
@@ -59,13 +61,7 @@
 			echo("<br>password: " . $password);
 			echo("<br>hashedPassword: " . $hashedPassword);			
 			
-			$servername = "localhost";
-			$username = "website";
-			$password = "";
-			$dbname = "hausaufgaben";
-
-			// Create connection
-			$conn = new mysqli($servername, $username, $password, $dbname);
+			
 
 			// Check connection
 			if ($conn->connect_error) {

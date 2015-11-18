@@ -6,16 +6,10 @@
 
 <?php 
 
+require("sqlconnection.php");
+
 $email= $_POST["email"];
 $userPassword= $_POST["password"];
-
-$servername = "localhost";
-$username = "website";
-$password = "";
-$dbname = "hausaufgaben";
-
-// Create connection
-$conn = new mysqli($servername, $username, $password, $dbname);
 
 
 if($email != "")
