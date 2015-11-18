@@ -16,12 +16,12 @@ if($email != "")
 {
 	
 	
-	$sql = "SELECT uHashedPassword FROM users WHERE uEmail='$email'";
+	$sql = "SELECT uId, uHashedPassword  FROM users WHERE uEmail='$email'";
 		
 	echo("Query: $sql");
 	echo("<br>");
 
-	$resultHashedPassword = $conn->query($sql);
+	$result = $conn->query($sql);
 	
 	echo ("Password: $userPassword");
 	echo ("<br>");
@@ -29,10 +29,12 @@ if($email != "")
 	
 	
 	
-	if ($resultHashedPassword->num_rows > 0) 
+	if ($result->num_rows > 0) 
 	{
-		$hashedPassword = $resultHashedPassword->fetch_assoc()["uHashedPassword"];
-		echo(" Got Password hash from Database: $hashedPassword");
+		$result = $result->fetch_array();
+		echo("<br>$result");
+		$hashedPassword = $result["uHashedPassword"];
+		echo("Got Password hash from Database: $hashedPassword");
 		echo("<br>");
 		
 		echo("PASSWORDS IDENTICAL: " . password_verify($userPassword, $hashedPassword));
@@ -44,6 +46,23 @@ if($email != "")
 		if(password_verify($userPassword, $hashedPassword))
 		{
 			echo("Login successfull");
+			
+			$uId = $result["uId"];
+			echo("<br>$result");
+			echo("<br>UID: $uId");
+			
+			setcookie("uId", $uId, time() + (86400 * 1), "/"); #saving ID of current user
+			$uSessionKey = substr(md5(rand()), 0, 16); #creating a session key
+			setcookie("uSessionKey", $uSessionKey, time() + (86400 * 1), "/");  #saving the session key locally
+			$hashedSessionKey = password_hash($uSessionKey, PASSWORD_BCRYPT);
+			$sql = "UPDATE users SET uSessionKey = '$hashedSessionKey' WHERE uId = $uId";
+			echo("<br>$sql");
+			if ($conn->query($sql) === TRUE) 
+			{
+				echo("<br>");
+				echo("Updates Session Key in DB");
+			}
+			
 		}
 		else
 		{
