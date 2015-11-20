@@ -43,7 +43,7 @@ if($email != "")
 		echo("<br>");
 		echo("<br>");
 		
-		if(password_verify($userPassword, $hashedPassword))
+		if(password_verify($userPassword, $hashedPassword)) #checking if password is correct
 		{
 			echo("Login successfull");
 			
@@ -60,7 +60,7 @@ if($email != "")
 			if ($conn->query($sql) === TRUE) 
 			{
 				echo("<br>");
-				echo("Updates Session Key in DB");
+				echo("Updated Session Key in DB");
 			}
 			
 		}
