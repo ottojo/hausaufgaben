@@ -2,39 +2,27 @@
 
 <?php
 
-function backToIndex()
-{
-
-}
 
 
 require("sqlconnection.php");
-
 
 
 if (isset($_COOKIE["uId"]) && isset($_COOKIE["uSessionKey"])) {
 
     $uId = $_COOKIE["uId"];
 
-    $gotSessionKey = $conn->query("SELECT uSessionKey FROM users WHERE uId = $uId");
-    $gotSessionKey = $gotSessionKey->fetch_array();
-    $gotSessionKey = $gotSessionKey["uSessionKey"];
+    $userData = $conn->query("SELECT uSessionKey, uFirstName, uLastName, uEmail FROM users WHERE uId = $uId");
+    $userData = $userData->fetch_array();
+    $uSessionKey = $userData["uSessionKey"];
+    $uFirstName = $userData["uFirstName"];
 
-    if(password_verify($_COOKIE["uSessionKey"], $gotSessionKey))
-    {
-        echo ("Welcome, User Nr. $uId");
+    if (password_verify($_COOKIE["uSessionKey"], $uSessionKey)) {
+        echo("Welcome, $uFirstName.");
+    } else {
+        header("Location: ./index.php");
     }
-    else
-    {
-        //header("Location: ./index.php");
-        echo("2");
-    }
-
 } else {
-
     header("Location: ./index.php");
-
-
 }
 
 ?>
