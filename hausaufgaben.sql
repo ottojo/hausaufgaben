@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Erstellungszeit: 24. Nov 2015 um 16:24
+-- Erstellungszeit: 24. Nov 2015 um 16:31
 -- Server Version: 5.6.16
 -- PHP-Version: 5.5.11
 
@@ -36,6 +36,7 @@ CREATE TABLE IF NOT EXISTS `homework` (
   `hDeadline` datetime NOT NULL,
   `hSubject` text NOT NULL,
   `hNotes` text NOT NULL,
+  `hDone` tinyint(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`hId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
