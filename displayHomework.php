@@ -14,12 +14,37 @@ if (isset($_COOKIE["uId"]) && isset($_COOKIE["uSessionKey"])) {
     if (password_verify($_COOKIE["uSessionKey"], $uSessionKey)) {
 
         #LOGGED IN
-        $homeworkCount = $conn->query("SELECT COUNT(`hId`) FROM `homework` WHERE `uId` = $uId");
-        $homeworkCount = $homeworkCount->fetch_array();
-        $homeworkCount = $homeworkCount["COUNT(`hId`)"];
+        #$homeworkCount = $conn->query("SELECT COUNT(`hId`) FROM `homework` WHERE `uId` = $uId");
+        #$homeworkCount = $homeworkCount->fetch_array();
+        #$homeworkCount = $homeworkCount["COUNT(`hId`)"];
         echo("Welcome, $uFirstName.<br>");
-        echo("You have $homeworkCount Tasks created.");
-
+        #echo("You have $homeworkCount Tasks created.");
+		$homework = $conn->query("SELECT hId, bId, hPageNr, hExerciseNr, hDeadline, hSubject, hNotes, hDone FROM homework WHERE uId = $uId && DATEDIFF(hDeadline,CURDATE()) > -3 ");
+		?>
+		<table>
+			<tr>
+				<td>Fach</td>
+				<td>Tage verbleibend</td>
+				<td>Aufgabe</td>
+				<td>Notizen</td>
+			</tr>
+			<?php
+			while($result = $homework->fetch_array())
+			{
+				echo("<tr>");
+				for($i = 0; $i < 4; $i++)
+				{
+					echo("<td>");
+					echo($result[$i]);
+					echo("</td>");
+				}
+				echo("</tr>");
+			}
+		
+		?>
+		</table>
+		
+		<?php
 
 
 

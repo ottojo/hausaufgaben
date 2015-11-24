@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Erstellungszeit: 24. Nov 2015 um 16:31
+-- Erstellungszeit: 24. Nov 2015 um 16:56
 -- Server Version: 5.6.16
 -- PHP-Version: 5.5.11
 
@@ -38,7 +38,14 @@ CREATE TABLE IF NOT EXISTS `homework` (
   `hNotes` text NOT NULL,
   `hDone` tinyint(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`hId`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+
+--
+-- Daten für Tabelle `homework`
+--
+
+INSERT INTO `homework` (`uId`, `hId`, `bId`, `hPageNr`, `hExerciseNr`, `hCreationTime`, `hDeadline`, `hSubject`, `hNotes`, `hDone`) VALUES
+(2, 1, 1, 10, 4, '2015-11-24 15:39:03', '2016-02-13 00:00:00', 'Mathe', 'Nur A und B', 0);
 
 -- --------------------------------------------------------
 
