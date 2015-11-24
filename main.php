@@ -1,5 +1,5 @@
-<h1>Neue Seite für Gedöns.</h1>
-
+<h1>Hausaufgaben</h1>
+<h2>Copy all the homework with ease</h2>
 <?php
 
 
