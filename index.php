@@ -1,6 +1,6 @@
 <html>
 	<body>
-		<h1>Index Page</h1>
+		<h1>Hausaufgaben</h1>
 		<br>
 		<?php echo("PHP works"); ?>
 		<br>
