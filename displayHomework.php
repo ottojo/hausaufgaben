@@ -23,16 +23,20 @@ if (isset($_COOKIE["uId"]) && isset($_COOKIE["uSessionKey"])) {
 		?>
 		<table>
 			<tr>
-				<td>Fach</td>
-				<td>Tage verbleibend</td>
-				<td>Aufgabe</td>
-				<td>Notizen</td>
+				<td>hId</td>
+				<td>bId</td>
+				<td>hPageNr</td>
+				<td>hExerciseNr</td>
+				<td>hDeadline</td>
+				<td>hSubject</td>
+				<td>hNotes</td>
+				<td>hDone</td>
 			</tr>
 			<?php
 			while($result = $homework->fetch_array())
 			{
 				echo("<tr>");
-				for($i = 0; $i < 4; $i++)
+				for($i = 0; $i < 8; $i++)
 				{
 					echo("<td>");
 					echo($result[$i]);
