@@ -19,7 +19,7 @@ if (isset($_COOKIE["uId"]) && isset($_COOKIE["uSessionKey"])) {
         #$homeworkCount = $homeworkCount["COUNT(`hId`)"];
         echo("Welcome, $uFirstName.<br>");
         #echo("You have $homeworkCount Tasks created.");
-		$homework = $conn->query("SELECT hId, bId, hPageNr, hExerciseNr, hDeadline, hSubject, hNotes, hDone FROM homework WHERE uId = $uId && DATEDIFF(hDeadline,CURDATE()) > -3 ");
+		$homework = $conn->query("SELECT hId, bId, hPageNr, hExerciseNr, hDeadline, hSubject, hNotes, hDone FROM homework WHERE uId = $uId && DATEDIFF(hDeadline,CURDATE()) > -3 "); //has to be fixed
 		?>
 		<table>
 			<tr>
