@@ -13,6 +13,9 @@
 		<form action="./displayHomework.php">
 			<input type="submit" value="Display Homework">
 		</form>
+		<form action="./enterHomework.php">
+			<input type="submit" value="Enter Homework">
+		</form>
 		
 		
 		
