@@ -21,7 +21,7 @@ if (isset($_COOKIE["uId"]) && isset($_COOKIE["uSessionKey"])) {
         #echo("You have $homeworkCount Tasks created.");
 		$homework = $conn->query("SELECT hId, bId, hPageNr, hExerciseNr, hDeadline, hSubject, hNotes, hDone FROM homework WHERE uId = $uId && DATEDIFF(hDeadline,CURDATE()) > -3 "); //has to be fixed
 		?>
-		<table>
+		<table border="1">
 			<tr>
 				<td>hId</td>
 				<td>bId</td>
