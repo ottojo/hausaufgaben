@@ -2,7 +2,6 @@
 	<body>
 		<h1>Hausaufgaben</h1>
 		<br>
-		<hi>Test für GIT am Schulrechner</h1>
 		<br>
 		<?php echo("PHP works"); ?>
 		<br>
