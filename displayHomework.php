@@ -1,5 +1,5 @@
 <?php
-	
+
 require("sqlconnection.php");
 
 if (isset($_COOKIE["uId"]) && isset($_COOKIE["uSessionKey"])) {
@@ -19,37 +19,34 @@ if (isset($_COOKIE["uId"]) && isset($_COOKIE["uSessionKey"])) {
         #$homeworkCount = $homeworkCount["COUNT(`hId`)"];
         echo("Welcome, $uFirstName.<br>");
         #echo("You have $homeworkCount Tasks created.");
-		$homework = $conn->query("SELECT hId, bId, hPageNr, hExerciseNr, hDeadline, hSubject, hNotes, hDone FROM homework WHERE uId = $uId && DATEDIFF(hDeadline,CURDATE()) > -3 "); //has to be fixed
-		?>
-		<table border="1">
-			<tr>
-				<td>hId</td>
-				<td>bId</td>
-				<td>hPageNr</td>
-				<td>hExerciseNr</td>
-				<td>hDeadline</td>
-				<td>hSubject</td>
-				<td>hNotes</td>
-				<td>hDone</td>
-			</tr>
-			<?php
-			while($result = $homework->fetch_array())
-			{
-				echo("<tr>");
-				for($i = 0; $i < 8; $i++)
-				{
-					echo("<td>");
-					echo($result[$i]);
-					echo("</td>");
-				}
-				echo("</tr>");
-			}
-		
-		?>
-		</table>
-		
-		<?php
+        $homework = $conn->query("SELECT hId, bId, hPageNr, hExerciseNr, hDeadline, hSubject, hNotes, hDone FROM homework WHERE uId = $uId && DATEDIFF(hDeadline,CURDATE()) > -3 "); //has to be fixed
+        ?>
+        <table border="1">
+            <tr>
+                <td>hId</td>
+                <td>bId</td>
+                <td>hPageNr</td>
+                <td>hExerciseNr</td>
+                <td>hDeadline</td>
+                <td>hSubject</td>
+                <td>hNotes</td>
+                <td>hDone</td>
+            </tr>
+            <?php
+            while ($result = $homework->fetch_array()) {
+                echo("<tr>");
+                for ($i = 0; $i < 8; $i++) {
+                    echo("<td>");
+                    echo($result[$i]);
+                    echo("</td>");
+                }
+                echo("</tr>");
+            }
 
+            ?>
+        </table>
+
+        <?php
 
 
     } else {

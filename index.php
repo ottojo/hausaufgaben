@@ -38,11 +38,13 @@
                 <div class="modal-body">
                     <div class="form-group">
                         <label for="signupFirstname">First Name</label>
-                        <input class="form-control" type="text" name="firstname" id="signupFirstname" placeholder="First Name">
+                        <input class="form-control" type="text" name="firstname" id="signupFirstname"
+                               placeholder="First Name">
                     </div>
                     <div class="form-group">
                         <label for="signupLastname">Last Name</label>
-                        <input class="form-control" type="text" name="lastname" id="signupLastname" placeholder="Last Name">
+                        <input class="form-control" type="text" name="lastname" id="signupLastname"
+                               placeholder="Last Name">
                     </div>
                     <div class="form-group">
                         <label for="signupEmail">Email address</label>
@@ -50,14 +52,15 @@
                     </div>
                     <div class="form-group">
                         <label for="signupPassword">Password</label>
-                        <input class="form-control" type="password" name="password" id="signupPassword" placeholder="Password">
+                        <input class="form-control" type="password" name="password" id="signupPassword"
+                               placeholder="Password">
                     </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                     <button type="submit" class="btn btn-primary">Sign up</button>
                 </div>
-                </form>
+            </form>
         </div>
     </div>
 </div>

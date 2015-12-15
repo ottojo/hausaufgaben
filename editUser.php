@@ -1,7 +1,6 @@
 <?php
 
 
-
 require("sqlconnection.php");
 
 
@@ -16,9 +15,9 @@ if (isset($_COOKIE["uId"]) && isset($_COOKIE["uSessionKey"])) {
 
     if (password_verify($_COOKIE["uSessionKey"], $uSessionKey)) {
         echo("Welcome, $uFirstName. <br>");
-		echo("Vorname: $uFirstName <br>");
-		?>
-		<?php
+        echo("Vorname: $uFirstName <br>");
+        ?>
+        <?php
     } else {
         header("Location: ./index.php");
     }

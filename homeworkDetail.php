@@ -3,7 +3,6 @@
 <?php
 
 
-
 require("sqlconnection.php");
 
 
@@ -15,38 +14,38 @@ if (isset($_COOKIE["uId"]) && isset($_COOKIE["uSessionKey"])) {
     $userData = $userData->fetch_array();
     $uSessionKey = $userData["uSessionKey"];
     $uFirstName = $userData["uFirstName"];
-	$uLastName = $userData["uLastName"];
-	$uEmail = $userData["uEmail"];
+    $uLastName = $userData["uLastName"];
+    $uEmail = $userData["uEmail"];
 
     if (password_verify($_COOKIE["uSessionKey"], $uSessionKey)) {
-		echo("Vorname: $uFirstName");
-		?>
-		<form action="editUser.php" style="display:inline">
-			<input type="text" name="firstname">
-			<input type="submit" value="Update">
-		</form> 
-		<?php
-		echo("Nachname: $uLastName");
-		?>
-		<form action="editUser.php" style="display:inline">
-			<input type="text" name="lastname">
-			<input type="submit" value="Update">
-		</form> 
-		<?php
-		echo("E-Mail: $uEmail");
-		?>
-		<form action="editUser.php" style="display:inline">
-			<input type="text" name="emaiö">
-			<input type="submit" value="Update">
-		</form> 
-		<?php
-		echo("Passwort");
-		?>
-		<form action="editUser.php" style="display:inline">
-			<input type="text" name="password">
-			<input type="submit" value="Update">
-		</form> 
-		<?php
+        echo("Vorname: $uFirstName");
+        ?>
+        <form action="editUser.php" style="display:inline">
+            <input type="text" name="firstname">
+            <input type="submit" value="Update">
+        </form>
+        <?php
+        echo("Nachname: $uLastName");
+        ?>
+        <form action="editUser.php" style="display:inline">
+            <input type="text" name="lastname">
+            <input type="submit" value="Update">
+        </form>
+        <?php
+        echo("E-Mail: $uEmail");
+        ?>
+        <form action="editUser.php" style="display:inline">
+            <input type="text" name="emaiï¿½">
+            <input type="submit" value="Update">
+        </form>
+        <?php
+        echo("Passwort");
+        ?>
+        <form action="editUser.php" style="display:inline">
+            <input type="text" name="password">
+            <input type="submit" value="Update">
+        </form>
+        <?php
     } else {
         header("Location: ./index.php");
     }
