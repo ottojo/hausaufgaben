@@ -7,9 +7,9 @@
  */
 
 $bookId = $_POST["bookId"];
-$site = $_POST["site"];
+$pageNr = $_POST["pageNr"];
 $exerciseNr = $_POST["exerciseNr"];
 
 require("sqlconnection.php");
 
-$conn->query("SELECT from ");
+$conn->query("SELECT uId FROM homework WHERE bId = $bookId && hPageNr = $pageNr && hExerciseNr = $exerciseNr");
