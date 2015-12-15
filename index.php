@@ -7,13 +7,18 @@
     <link rel="icon" href="../../favicon.ico">
 
     <title>Homework</title>
+	<sript>
+  $(index.php).ready(function(){
+    $('.collapsible').collapsible({
+      accordion : false // A setting that changes the collapsible behavior to expandable instead of the default accordion style
+    });
+  });</script>
 
-    <!-- Bootstrap core CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
-          integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <!-- materiealizeoderso core CSS -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/css/materialize.min.css">
 
     <!-- Custom styles for this template -->
-    <link href="cover.css" rel="stylesheet">
+   <!-- <link href="style.css" rel="stylesheet"> -->
 
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -25,7 +30,21 @@
 
 <body>
 
-<!-- Modal for Signup -->
+<!-- Dropdown Structure -->
+<div class="navbar-fixed">
+  <nav>
+    <div class="nav-wrapper">
+      <a href="/index.php" class="brand-logo">Hausaufgaben</a>
+      <ul id="nav-mobile" class="right hide-on-med-and-down">
+        <li><a href="displayHomework.php">Homework</a></li>
+        <li><a href="enterHomework.php">New Homework</a></li>
+        <li><a href="editUser.php">Profile</a></li>
+      </ul>
+    </div>
+  </nav>
+</div>        
+        
+<!-- Modal for Signup 
 <div class="modal fade" id="signup" tabindex="-1" role="dialog">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -65,7 +84,7 @@
     </div>
 </div>
 
-<!-- Modal for Login -->
+<!-- Modal for Login 
 <div class="modal fade" id="login" tabindex="-1" role="dialog">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -95,10 +114,6 @@
         </div>
     </div>
 </div>
-
-<div class="site-wrapper">
-
-    <div class="site-wrapper-inner">
 
         <div class="cover-container">
 
@@ -141,15 +156,38 @@
 
     </div>
 
-</div>
+</div> -->
+
+
+	<div class="card-panel hoverable">
+		 <div class="row">
+      <div class="col s7 push-s5"><span class="flow-text">This div is 7-columns wide on pushed to the right by 5-columns.</span></div>
+      <div class="col s5 pull-s7"><span class="flow-text">5-columns wide pulled to the left by 7-columns.</span></div>
+    </div>	
+	</div>
+	
+
+  <ul class="collapsible" data-collapsible="accordion">
+    <li>
+      <div class="collapsible-header"><i class="material-icons">filter_drama</i>First</div>
+      <div class="collapsible-body"><p>Lorem ipsum dolor sit amet.</p></div>
+    </li>
+    <li>
+      <div class="collapsible-header"><i class="material-icons">place</i>Second</div>
+      <div class="collapsible-body"><p>Lorem ipsum dolor sit amet.</p></div>
+    </li>
+    <li>
+      <div class="collapsible-header"><i class="material-icons">whatshot</i>Third</div>
+      <div class="collapsible-body"><p>Lorem ipsum dolor sit amet.</p></div>
+    </li>
+  </ul>
+          
 
 <!-- Bootstrap core JavaScript
 ================================================== -->
 <!-- Placed at the end of the document so the pages load faster -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"
-        integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS"
-        crossorigin="anonymous"></script>
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/js/materialize.min.js"></script>
 
 </body>
 </html>
