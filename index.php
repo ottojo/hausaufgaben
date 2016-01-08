@@ -21,6 +21,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Homework</title>
 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/js/materialize.min.js"></script>
+
+
+    <script>
+        $(document).ready(function () {
+            // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
+            $('.modal-trigger').leanModal();
+        });
+    </script>
+
+
 </head>
 
 
@@ -40,122 +52,80 @@
         </div>
     </nav>
 </div>
-        
-<!-- Modal for Signup 
-<div class="modal fade" id="signup" tabindex="-1" role="dialog">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-                        aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title">Sign up</h4>
+
+
+<a class="waves-effect waves-light btn modal-trigger" href="#login">Login</a>
+<a class="waves-effect waves-light btn modal-trigger" href="#signup">Sign up</a>
+
+
+<!-- Modal for Signup -->
+<div class="modal" id="signup">
+    <div class="modal-content">
+        <h4>Sign up</h4>
+        <form action="./register.php" method="post">
+            <div class="row">
+                <div class="input-field col s6">
+                    <input id="signupFirstname" type="text" name="firstname">
+                    <label for="signupFirstname">First Name</label>
+                </div>
+
+                <div class="input-field col s6">
+                    <input id="signupLastname" type="text" name="lastname">
+                    <label for="signupLastname">Last Name</label>
+                </div>
             </div>
-            <form action="./register.php" method="post">
-                <div class="modal-body">
-                    <div class="form-group">
-                        <label for="signupFirstname">First Name</label>
-                        <input class="form-control" type="text" name="firstname" id="signupFirstname"
-                               placeholder="First Name">
-                    </div>
-                    <div class="form-group">
-                        <label for="signupLastname">Last Name</label>
-                        <input class="form-control" type="text" name="lastname" id="signupLastname"
-                               placeholder="Last Name">
-                    </div>
-                    <div class="form-group">
-                        <label for="signupEmail">Email address</label>
-                        <input class="form-control" type="email" name="email" id="signupEmail" placeholder="Email">
-                    </div>
-                    <div class="form-group">
-                        <label for="signupPassword">Password</label>
-                        <input class="form-control" type="password" name="password" id="signupPassword"
-                               placeholder="Password">
-                    </div>
+            <div class="row">
+                <div class="input-field col s12">
+                    <input id="email" type="email" name="email">
+                    <label for="email">Email</label>
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary">Sign up</button>
+            </div>
+            <div class="row">
+                <div class="input-field col s12">
+                    <input id="password" type="password" name="password">
+                    <label for="password">Password</label>
                 </div>
-            </form>
-        </div>
+            </div>
+            <div class="modal-footer">
+                <button type="submit" class="modal-action waves-effect waves-green btn-flat">Sign up</button>
+            </div>
+        </form>
     </div>
 </div>
 
-<!-- Modal for Login 
-<div class="modal fade" id="login" tabindex="-1" role="dialog">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
+<!-- Modal for Login -->
 
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-                        aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title">Log in</h4>
+<div class="modal" id="login">
+    <div class="modal-content">
+        <h4>Log in</h4>
+        <form action="login.php" method="post">
+
+
+            <div class="row">
+                <div class="input-field col s12">
+                    <input id="email" type="email" name="email">
+                    <label for="email">Email</label>
+                </div>
             </div>
-            <form action="login.php" method="post">
-                <div class="modal-body">
-                    <div class="form-group">
-                        <label for="loginEmail">Email address</label>
-                        <input type="email" class="form-control" id="loginEmail" placeholder="Email" name="email">
-                    </div>
-                    <div class="form-group">
-                        <label for="loginPassword">Password</label>
-                        <input type="password" class="form-control" id="loginPassword" placeholder="Password"
-                               name="password">
-                    </div>
+
+
+            <div class="row">
+                <div class="input-field col s12">
+                    <input id="password" type="password" name="password">
+                    <label for="password">Password</label>
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary">Log in</button>
-                </div>
-            </form>
-        </div>
+            </div>
+
+
+            <div class="modal-footer">
+                <button type="submit" class="modal-action waves-effect waves-green btn-flat">Log in</button>
+            </div>
+        </form>
     </div>
 </div>
 
-        <div class="cover-container">
 
-            <div class="masthead clearfix">
-                <div class="inner">
-                    <h3 class="masthead-brand">Homework</h3>
-                    <nav>
-                        <ul class="nav masthead-nav">
-                            <li class="active"><a href="#">Home</a></li>
-                            <li><a href="#">Features</a></li>
-                            <li><a href="#">Contact</a></li>
-                        </ul>
-                    </nav>
-                </div>
-            </div>
-
-            <div class="inner cover">
-                <h1 class="cover-heading">Track your Homework.</h1>
-
-                <p class="lead">Use Homework to track your tasks. Homework notifies you to do your work and helps
-                    you to
-                    find help.</p>
-
-                <p class="lead">
-                    <a href="#" class="btn btn-lg btn-default" data-toggle="modal" data-target="#signup">Sign up</a>
-                    <a
-                        href="#" class="btn btn-lg btn-default" data-toggle="modal" data-target="#login">Log in</a>
-                </p>
-            </div>
-
-
-            <div class="mastfoot">
-                <div class="inner">
-                    <p>Project from <a href="https://github.com/conwear">Kasimir</a> and <a
-                            href="https://github.com/ottojo">Jonas</a></p>
-                </div>
-            </div>
-
-        </div>
-
-    </div>
-
-</div> -->
-
-
+<!--
 	<div class="card-panel hoverable">
 		 <div class="row">
       <div class="col s7 push-s5"><span class="flow-text">This div is 7-columns wide on pushed to the right by 5-columns.</span></div>
@@ -177,14 +147,8 @@
       <div class="collapsible-header"><i class="material-icons">whatshot</i>Third</div>
       <div class="collapsible-body"><p>Lorem ipsum dolor sit amet.</p></div>
     </li>
-  </ul>
-          
+  </ul>-->
 
-<!-- Bootstrap core JavaScript
-================================================== -->
-<!-- Placed at the end of the document so the pages load faster -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
- <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/js/materialize.min.js"></script>
 
 </body>
 </html>
