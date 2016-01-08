@@ -8,8 +8,8 @@
 
 require("sqlconnection.php");
 
-$email = $_GET["email"];
-$userPassword = $_GET["password"];
+$email = $_POST["email"];
+$userPassword = $_POST["password"];
 
 
 if ($email != "") {
