@@ -45,6 +45,8 @@
             <i class="inline material-icons">book</i>
             <a href="index.php" class="brand-logo">&nbsp;Hausaufgaben</a>
             <ul id="nav-mobile" class="right hide-on-med-and-down">
+                <a class="waves-effect waves-light btn modal-trigger" href="#login">Login</a>
+                <a class="waves-effect waves-light btn modal-trigger" href="#signup">Sign up</a>
                 <li><a href="displayHomework.php">Homework</a></li>
                 <li><a href="enterHomework.php">New Homework</a></li>
                 <li><a href="editUser.php">Profile</a></li>
@@ -52,10 +54,6 @@
         </div>
     </nav>
 </div>
-
-
-<a class="waves-effect waves-light btn modal-trigger" href="#login">Login</a>
-<a class="waves-effect waves-light btn modal-trigger" href="#signup">Sign up</a>
 
 
 <!-- Modal for Signup -->
