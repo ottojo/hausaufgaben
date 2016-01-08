@@ -1,15 +1,18 @@
-<!-- materiealizeoderso core CSS -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/css/materialize.min.css">
-
-<!-- Custom styles for this template -->
-<!-- <link href="style.css" rel="stylesheet"> -->
+<head>
 
 
-<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-<!--[if lt IE 9]>
-<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-<![endif]-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/css/materialize.min.css">
+
+    <!-- Custom styles for this template -->
+    <!-- <link href="style.css" rel="stylesheet"> -->
+
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
 
 
 <!-- Dropdown Structure -->
@@ -48,7 +51,7 @@ if (isset($_COOKIE["uId"]) && isset($_COOKIE["uSessionKey"])) {
         #$homeworkCount = $homeworkCount["COUNT(`hId`)"];
         //echo("Welcome, $uFirstName.<br>");
         #echo("You have $homeworkCount Tasks created.");
-        $homework = $conn->query("SELECT hId, bId, hPageNr, hExerciseNr, hDeadline, hSubject, hNotes, hDone FROM homework WHERE uId = $uId && DATEDIFF(hDeadline,CURDATE()) > -3 "); //has to be fixed
+        $homework = $conn->query("SELECT hId, bId, hPageNr, hExerciseNr, hDeadline, hSubject, hNotes, hDone FROM homework WHERE uId = $uId && DATEDIFF(hDeadline,CURDATE()) > -3 && hDone = 0");
         $collumn = 1;
         ?>
         <div>
@@ -67,11 +70,10 @@ if (isset($_COOKIE["uId"]) && isset($_COOKIE["uSessionKey"])) {
 
                 $hSubject = $result["hSubject"];
                 $hNotes = $result["hNotes"];
+                $hId = $result["hId"];
 
 
-                echo("<div class=\"col m4\">
-                        <div class=\"card blue-grey darken-1\">
-                        <div class=\"card-content white-text\">");
+                echo("<div class=\"col m4\"><div class=\"card blue-grey darken-1\"><div class=\"card-content white-text\">");
 
                 echo("<span class=\"card-title\">$hSubject</span>");
 
@@ -89,10 +91,18 @@ if (isset($_COOKIE["uId"]) && isset($_COOKIE["uSessionKey"])) {
                 }
 
 
-                echo("<p><b>My Notes:</b><br>$hNotes</p>");
+                if ($hNotes != "")
+                    echo("<p><b>My Notes:</b><br>$hNotes</p>");
 
-                echo("</div>");
-                echo("</div>");
+                echo("</div>");//card-content
+
+                ?>
+                <div class="card-action">
+                    <a href="markAsDone.php?hId=<?php echo($hId); ?>&continue=<?php echo($_SERVER['REQUEST_URI']); ?>">DONE</a>
+                </div>
+
+
+                <?php echo("</div>");
                 echo("</div>");
 
             } ?>
