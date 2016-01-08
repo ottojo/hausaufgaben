@@ -1,32 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="icon" href="../../favicon.ico">
+    <!--Import Google Icon Font-->
+    <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!--Import materialize.css-->
+    <link type="text/css" rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/css/materialize.min.css"
+          media="screen,projection"/>
 
+    <!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Homework</title>
-    <script>
-  $(index.php).ready(function(){
-    $('.collapsible').collapsible({
-      accordion : false // A setting that changes the collapsible behavior to expandable instead of the default accordion style
-    });
-  });</script>
 
-    <!-- materiealizeoderso core CSS -->
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/css/materialize.min.css">
-
-    <!-- Custom styles for this template -->
-   <!-- <link href="style.css" rel="stylesheet"> -->
-
-
-    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-    <!--[if lt IE 9]>
-    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
 </head>
+
 
 <body>
 
@@ -34,7 +22,7 @@
 <div class="navbar-fixed">
   <nav>
     <div class="nav-wrapper">
-      <a href="/index.php" class="brand-logo">Hausaufgaben</a>
+        <a href="index.php" class="brand-logo">Hausaufgaben</a>
       <ul id="nav-mobile" class="right hide-on-med-and-down">
         <li><a href="displayHomework.php">Homework</a></li>
         <li><a href="enterHomework.php">New Homework</a></li>
