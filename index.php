@@ -7,7 +7,7 @@
     <link rel="icon" href="../../favicon.ico">
 
     <title>Homework</title>
-	<sript>
+    <script>
   $(index.php).ready(function(){
     $('.collapsible').collapsible({
       accordion : false // A setting that changes the collapsible behavior to expandable instead of the default accordion style
