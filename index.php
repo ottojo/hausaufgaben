@@ -1,13 +1,21 @@
+<style type="text/css">
+    .inline.material-icons {
+        display: inline;
+    }
+</style>
+
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <!--Import Google Icon Font-->
-    <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!--Import materialize.css-->
     <link type="text/css" rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/css/materialize.min.css"
           media="screen,projection"/>
+
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon"/>
 
     <!--Let browser know website is optimized for mobile-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -20,17 +28,18 @@
 
 <!-- Dropdown Structure -->
 <div class="navbar-fixed">
-  <nav>
-    <div class="nav-wrapper">
-        <a href="index.php" class="brand-logo">Hausaufgaben</a>
-      <ul id="nav-mobile" class="right hide-on-med-and-down">
-        <li><a href="displayHomework.php">Homework</a></li>
-        <li><a href="enterHomework.php">New Homework</a></li>
-        <li><a href="editUser.php">Profile</a></li>
-      </ul>
-    </div>
-  </nav>
-</div>        
+    <nav>
+        <div class="nav-wrapper">
+            <i class="inline material-icons">book</i>
+            <a href="index.php" class="brand-logo">&nbsp;Hausaufgaben</a>
+            <ul id="nav-mobile" class="right hide-on-med-and-down">
+                <li><a href="displayHomework.php">Homework</a></li>
+                <li><a href="enterHomework.php">New Homework</a></li>
+                <li><a href="editUser.php">Profile</a></li>
+            </ul>
+        </div>
+    </nav>
+</div>
         
 <!-- Modal for Signup 
 <div class="modal fade" id="signup" tabindex="-1" role="dialog">

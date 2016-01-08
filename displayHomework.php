@@ -1,10 +1,17 @@
+<style type="text/css">
+    .inline.material-icons {
+        display: inline;
+    }
+</style>
+
 <head>
 
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/css/materialize.min.css">
 
-    <!-- Custom styles for this template -->
-    <!-- <link href="style.css" rel="stylesheet"> -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon"/>
 
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -19,9 +26,10 @@
 <div class="navbar-fixed">
     <nav>
         <div class="nav-wrapper">
-            <a href="index.php" class="brand-logo">Hausaufgaben</a>
+            <i class="inline material-icons">book</i>
+            <a href="index.php" class="brand-logo">&nbsp;Hausaufgaben</a>
             <ul id="nav-mobile" class="right hide-on-med-and-down">
-                <li><a href="displayHomework.php">Homework</a></li>
+                <li class="active"><a href="displayHomework.php">Homework</a></li>
                 <li><a href="enterHomework.php">New Homework</a></li>
                 <li><a href="editUser.php">Profile</a></li>
             </ul>
@@ -54,16 +62,16 @@ if (isset($_COOKIE["uId"]) && isset($_COOKIE["uSessionKey"])) {
         $homework = $conn->query("SELECT hId, bId, hPageNr, hExerciseNr, hDeadline, hSubject, hNotes, hDone FROM homework WHERE uId = $uId && DATEDIFF(hDeadline,CURDATE()) > -3 && hDone = 0");
         $collumn = 1;
         ?>
-        <div>
+        <row>
             <?php
             while ($result = $homework->fetch_array()) {
 
                 if ($collumn == 1) {
                     echo("</div><div class =\"row\">");
                     $collumn++;
-                } else if ($collumn == 2) {
+                } else if ($collumn != 1 && $collumn != 4) {
                     $collumn++;
-                } else if ($collumn == 3) {
+                } else if ($collumn == 4) {
                     $collumn = 1;
                 }
 
@@ -73,7 +81,7 @@ if (isset($_COOKIE["uId"]) && isset($_COOKIE["uSessionKey"])) {
                 $hId = $result["hId"];
 
 
-                echo("<div class=\"col m4\"><div class=\"card blue-grey darken-1\"><div class=\"card-content white-text\">");
+                echo("<div class=\"col s3\"><div class=\"card blue-grey darken-1 hoverable\"><div class=\"card-content white-text\">");
 
                 echo("<span class=\"card-title\">$hSubject</span>");
 
@@ -106,7 +114,7 @@ if (isset($_COOKIE["uId"]) && isset($_COOKIE["uSessionKey"])) {
                 echo("</div>");
 
             } ?>
-        </div>
+        </row>
         <?php
 
 
