@@ -2,6 +2,7 @@
     .inline.material-icons {
         display: inline;
     }
+
 </style>
 
 <head>
@@ -39,7 +40,29 @@
 
                 }
             );
+            $('select').material_select();
+
+
+            $('.datepicker').pickadate({
+                selectMonths: true, // Creates a dropdown to control month
+                selectYears: 15, // Creates a dropdown of 15 years to control year
+                container: 'body',
+            });
         });
+        function exerciseSelection() {
+            var book = document.getElementById("bookSelect").value;
+            if (book == -1) {
+                document.getElementById("pageSelect").setAttribute("disabled", "disabled");
+                document.getElementById("exerciseSelect").setAttribute("disabled", "disabled");
+            }
+            else {
+                document.getElementById("pageSelect").removeAttribute("disabled");
+                document.getElementById("exerciseSelect").removeAttribute("disabled");
+            }
+        }
+
+
+
     </script>
 
 
@@ -54,7 +77,6 @@
         <ul class="valign-wrapper right hide-on-med-and-down">
 
             <li class="active"><a href="displayHomework.php">Homework</a></li>
-            <li><a href="enterHomework.php">New Homework</a></li>
             <li><a href="editUser.php">Profile</a></li>
 
             <?php
@@ -77,7 +99,7 @@
 
 
 <div class="fixed-action-btn" style="bottom: 45px; right: 24px;">
-    <a class="btn-floating btn-large waves-effect waves-light red">
+    <a class="btn-floating btn-large waves-effect waves-light red modal-trigger" href="#add">
         <i class="large material-icons">add</i>
     </a>
 </div>
@@ -100,7 +122,7 @@ if (isset($_COOKIE["uId"]) && isset($_COOKIE["uSessionKey"])) {
 
         #LOGGED IN
 
-        $homework = $conn->query("SELECT hId, bId, hPageNr, hExerciseNr, hDeadline, hSubject, hNotes, hDone FROM homework WHERE uId = $uId && DATEDIFF(hDeadline,CURDATE()) > -3 && hDone = 0");
+        $homework = $conn->query("SELECT hId, bId, hPageNr, hExerciseNr, hDeadline, hSubject, hNotes, hDone FROM homework WHERE uId = $uId && DATEDIFF(hDeadline,CURDATE()) > -3 && hDone = 0 ORDER BY hDeadline");
         $collumn = 1;
         ?>
         <row>
@@ -137,6 +159,7 @@ if (isset($_COOKIE["uId"]) && isset($_COOKIE["uSessionKey"])) {
                     $book = $conn->query("SELECT bTitle FROM books WHERE bId = $bId");
                     $bookResult = $book->fetch_array();
                     $bookTitle = $bookResult["bTitle"];
+
                     echo("<br><b>$bookTitle</b>");#
                     echo("<br>Page Nr. $pageNr");
                     echo("<br>Exercise Nr. $exerciseNr");
@@ -173,3 +196,65 @@ if (isset($_COOKIE["uId"]) && isset($_COOKIE["uSessionKey"])) {
 
 
 ?>
+
+
+<!-- Modal for Add -->
+
+<div class="modal" id="add">
+    <div class="modal-content">
+        <h4>Add Homework</h4>
+        <form action="enterHomework.php?continue=displayHomework.php" method="post">
+            <div class="row">
+                <div class="input-field col s8">
+                    <select id="bookSelect" name="book" onchange="exerciseSelection()">
+                        <option value="-1" selected>No book</option>
+                        <?php
+                        $resultBook = $conn->query("SELECT bId, bTitle FROM books");
+                        while ($book = $resultBook->fetch_array()) {
+                            $bId = $book["bId"];
+                            $bTitle = $book["bTitle"];
+                            echo("<option value=\"$bId\" >$bTitle</option>");
+                        }
+                        ?>
+                    </select>
+                    <label>Book</label>
+                </div>
+                <div class="input-field col s2">
+                    <input name="hPageNr" id="pageSelect" type="number" value="1" min="1" disabled="disabled">
+                    <label>Page</label>
+                </div>
+                <div class="input-field col s2">
+                    <input name="hExerciseNr" id="exerciseSelect" type="number" value="1" min="1" disabled="disabled">
+                    <label>Exercise Nr</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s8">
+                    <input required name="hSubject" type="text">
+                    <label>Subject</label>
+                </div>
+                <div class="input-field col s4">
+                    <input required type="text" name="hDeadline" class="datepicker">
+                    <label>Deadline</label>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="row">
+                    <div class="input-field col s12">
+                        <i class="material-icons prefix">mode_edit</i>
+                        <textarea id="notes" name="hNotes" class="materialize-textarea"></textarea>
+                        <label for="notes">Notes</label>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="modal-footer">
+                <button class="btn waves-effect waves-light" type="submit">Create
+                    <i class="material-icons right">send</i>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

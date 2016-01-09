@@ -68,7 +68,6 @@
             <ul class="valign-wrapper right hide-on-med-and-down">
 
                 <li><a href="displayHomework.php">Homework</a></li>
-                <li><a href="enterHomework.php">New Homework</a></li>
                 <li><a href="editUser.php">Profile</a></li>
 
                 <?php
@@ -156,7 +155,9 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="submit" class="modal-action waves-effect waves-green btn-flat">Sign up</button>
+                <button class="btn waves-effect waves-light" type="submit" name="action">Sign up
+                    <i class="material-icons right">send</i>
+                </button>
             </div>
         </form>
     </div>
@@ -187,7 +188,9 @@
 
 
             <div class="modal-footer">
-                <button type="submit" class="modal-action waves-effect waves-green btn-flat">Log in</button>
+                <button class="btn waves-effect waves-light" type="submit" name="action">Log in
+                    <i class="material-icons right">send</i>
+                </button>
             </div>
         </form>
     </div>

@@ -6,23 +6,27 @@
  * Time: 14:44
  */
 
-$bookId = $_GET["bookId"];
+$bId = $_GET["bId"];
 $pageNr = $_GET["pageNr"];
 $exerciseNr = $_GET["exerciseNr"];
 
 require("sqlconnection.php");
 
-$result = $conn->query("SELECT homework.uId, homework.bId, homework.hPageNr, homework.hExerciseNr, users.uFirstName, users.uEmail FROM homework, users WHERE bId = $bId && hPageNr = $pageNr && hExerciseNr = $exerciseNr && homework.uId = users.uId ");
+$result = $conn->query("SELECT DISTINCT homework.uId, users.uFirstName, users.uLastName, users.uEmail FROM homework, users WHERE bId = $bId && hPageNr = $pageNr && hExerciseNr = $exerciseNr && homework.uId = users.uId && homework.hDone = 1");
 
 
-
-
-while($row = $result->fetch_assoc())
-{
-	$uId = $row["uId"];
-	$post_data["bId"] = $row["bId"];
-	$post_data["hPageNr"] = $row["hPageNr"];
-	$post_data["hExerciseNr"] = $row["hExerciseNr"];
-	$object[$uId] = $post_data; 
+if ($result->num_rows == 0) {
+    echo("{}");
+} else {
+    while ($row = $result->fetch_assoc()) {
+        $uId = $row["uId"];
+        $post_data["uFirstName"] = $row["uFirstName"];
+        $post_data["uLastName"] = $row["uLastName"];
+        $post_data["uEmail"] = $row["uEmail"];
+        $object[$uId] = $post_data;
+    }
+    echo json_encode($object);
 }
-echo json_encode($object);
+die();
+
+
