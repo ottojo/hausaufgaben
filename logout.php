@@ -1,6 +1,14 @@
 <?php
-setcookie("uSessionKey", "-", time() - 3600);
-echo("logged out");
-@$newURL = $_GET["continue"];
+// unset cookies
+if (isset($_SERVER['HTTP_COOKIE'])) {
+    $cookies = explode(';', $_SERVER['HTTP_COOKIE']);
+    foreach ($cookies as $cookie) {
+        $parts = explode('=', $cookie);
+        $name = trim($parts[0]);
+        setcookie($name, '', time() - 1000);
+        setcookie($name, '', time() - 1000, '/');
+    }
+}
+$newURL = $_GET["continue"];
 header('Location: ' . $newURL);
 die();

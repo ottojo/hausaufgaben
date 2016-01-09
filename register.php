@@ -56,4 +56,8 @@ if (hasLoginData()) {
 
 
 }
+
+$newURL = $_GET["continue"];
+header('Location: ' . $newURL);
+die();
 ?>

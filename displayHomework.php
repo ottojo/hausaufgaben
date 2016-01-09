@@ -6,36 +6,74 @@
 
 <head>
 
-
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/css/materialize.min.css">
+    <style type="text/css">
+        .inline.material-icons {
+            display: inline;
+        }
+    </style>
+    <!--Import materialize.css-->
+    <link type="text/css" rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/css/materialize.min.css"
+          media="screen,projection"/>
 
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon"/>
 
+    <!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Homework</title>
 
-    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-    <!--[if lt IE 9]>
-    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/js/materialize.min.js"></script>
+
+
+    <script>
+        $(document).ready(function () {
+            // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
+            $('.modal-trigger').leanModal({
+                    dismissible: true, // Modal can be dismissed by clicking outside of the modal
+                    opacity: .5, // Opacity of modal background
+                    in_duration: 200, // Transition in duration
+                    out_duration: 200, // Transition out duration
+
+                }
+            );
+        });
+    </script>
+
+
 </head>
 
 
 <!-- Dropdown Structure -->
-<div class="navbar-fixed">
-    <nav>
-        <div class="nav-wrapper">
-            <i class="inline material-icons">book</i>
-            <a href="index.php" class="brand-logo">&nbsp;Hausaufgaben</a>
-            <ul id="nav-mobile" class="right hide-on-med-and-down">
-                <li class="active"><a href="displayHomework.php">Homework</a></li>
-                <li><a href="enterHomework.php">New Homework</a></li>
-                <li><a href="editUser.php">Profile</a></li>
-            </ul>
-        </div>
-    </nav>
-</div>
+<nav>
+    <div class="nav-wrapper">
+        <i class="inline material-icons">book</i>
+        <a href="index.php" class="brand-logo">&nbsp;Hausaufgaben</a>
+        <ul class="valign-wrapper right hide-on-med-and-down">
+
+            <li class="active"><a href="displayHomework.php">Homework</a></li>
+            <li><a href="enterHomework.php">New Homework</a></li>
+            <li><a href="editUser.php">Profile</a></li>
+
+            <?php
+            if ((!isset($_COOKIE["uSessionKey"])) || $_COOKIE["uSessionKey"] == "-") {
+                ?>
+                <li><a class="valign waves-effect waves-light btn modal-trigger" href="#login">Login</a></li>
+                <li><a class="valign waves-effect waves-light btn modal-trigger" href="#signup">Sign up</a></li><?php
+            } else {
+                ?>
+                <li><a class="valign waves-effect waves-light btn modal-trigger" href="logout.php?continue=index.php">Logout</a>
+                </li>
+                <?php
+            }
+            ?>
+
+
+        </ul>
+    </div>
+</nav>
 
 <?php
 

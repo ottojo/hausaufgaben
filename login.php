@@ -68,6 +68,10 @@ if ($email != "") {
 } else {
     echo("Please enter an Email Address");
 }
+
+$newURL = $_GET["continue"];
+header('Location: ' . $newURL);
+die();
 ?>
 
 </body>

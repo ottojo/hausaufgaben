@@ -1,13 +1,15 @@
-<style type="text/css">
-    .inline.material-icons {
-        display: inline;
-    }
-</style>
+
 
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
+
+    <style type="text/css">
+        .inline.material-icons {
+            display: inline;
+        }
+    </style>
     <!--Import materialize.css-->
     <link type="text/css" rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/css/materialize.min.css"
@@ -28,7 +30,14 @@
     <script>
         $(document).ready(function () {
             // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
-            $('.modal-trigger').leanModal();
+            $('.modal-trigger').leanModal({
+                    dismissible: true, // Modal can be dismissed by clicking outside of the modal
+                    opacity: .5, // Opacity of modal background
+                    in_duration: 200, // Transition in duration
+                    out_duration: 200, // Transition out duration
+
+                }
+            );
         });
     </script>
 
@@ -39,38 +48,42 @@
 <body>
 
 <!-- Dropdown Structure -->
-<div class="navbar-fixed">
+
     <nav>
         <div class="nav-wrapper">
             <i class="inline material-icons">book</i>
             <a href="index.php" class="brand-logo">&nbsp;Hausaufgaben</a>
-            <ul id="nav-mobile" class="right hide-on-med-and-down">
-                <?php
-                if ((!isset($_COOKIE["uSessionKey"])) || $_COOKIE["uSessionKey"] == "-") {
-                    ?>
-                    <a class="waves-effect waves-light btn modal-trigger" href="#login">Login</a>
-                    <a class="waves-effect waves-light btn modal-trigger" href="#signup">Sign up</a><?php
-                } else {
-                    ?>
-                    <a class="waves-effect waves-light btn modal-trigger"
-                       href="logout.php?continue=index.php">Logout</a><?php
-                }
-                ?>
+            <ul class="valign-wrapper right hide-on-med-and-down">
 
                 <li><a href="displayHomework.php">Homework</a></li>
                 <li><a href="enterHomework.php">New Homework</a></li>
                 <li><a href="editUser.php">Profile</a></li>
+
+                <?php
+                if ((!isset($_COOKIE["uSessionKey"])) || $_COOKIE["uSessionKey"] == "-") {
+                    ?>
+                    <li><a class="valign waves-effect waves-light btn modal-trigger" href="#login">Login</a></li>
+                    <li><a class="valign waves-effect waves-light btn modal-trigger" href="#signup">Sign up</a>
+                    </li><?php
+                } else {
+                    ?>
+                    <li><a class="valign waves-effect waves-light btn modal-trigger"
+                           href="logout.php?continue=index.php">Logout</a></li>
+                    <?php
+                }
+                ?>
+
+
             </ul>
         </div>
     </nav>
-</div>
 
 
 <!-- Modal for Signup -->
 <div class="modal" id="signup">
     <div class="modal-content">
         <h4>Sign up</h4>
-        <form action="./register.php" method="post">
+        <form action="./register.php?continue=index.php" method="post">
             <div class="row">
                 <div class="input-field col s6">
                     <input id="signupFirstname" type="text" name="firstname">
@@ -106,7 +119,7 @@
 <div class="modal" id="login">
     <div class="modal-content">
         <h4>Log in</h4>
-        <form action="login.php" method="post">
+        <form action="login.php?continue=index.php" method="post">
 
 
             <div class="row">
