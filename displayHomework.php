@@ -117,12 +117,16 @@ if (isset($_COOKIE["uId"]) && isset($_COOKIE["uSessionKey"])) {
                 $hSubject = $result["hSubject"];
                 $hNotes = $result["hNotes"];
                 $hId = $result["hId"];
+                $deadline = strtotime($result["hDeadline"]);
+                $deadlineString = date('d.m.Y', $deadline);
 
 
                 echo("<div class=\"col s3\"><div class=\"card blue-grey darken-1 hoverable\"><div class=\"card-content white-text\">");
 
-                echo("<span class=\"card-title\">$hSubject</span>");
-
+                echo("<row>");
+                echo("<span class=\"col s5 card-title\" style=\"padding: 0;\">$hSubject</span>");
+                echo("<span class=\"col s7 card-title right-align\">$deadlineString</span>");
+                echo("</row>");
                 if ($result["bId"] != "" && $result["hPageNr"] != "" && $result["hExerciseNr"] != "") {
                     $bId = $result["bId"];
                     $pageNr = $result["hPageNr"];
