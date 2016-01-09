@@ -75,6 +75,13 @@
     </div>
 </nav>
 
+
+<div class="fixed-action-btn" style="bottom: 45px; right: 24px;">
+    <a class="btn-floating btn-large waves-effect waves-light red">
+        <i class="large material-icons">add</i>
+    </a>
+</div>
+
 <?php
 
 require("sqlconnection.php");
@@ -92,11 +99,7 @@ if (isset($_COOKIE["uId"]) && isset($_COOKIE["uSessionKey"])) {
 
 
         #LOGGED IN
-        #$homeworkCount = $conn->query("SELECT COUNT(`hId`) FROM `homework` WHERE `uId` = $uId");
-        #$homeworkCount = $homeworkCount->fetch_array();
-        #$homeworkCount = $homeworkCount["COUNT(`hId`)"];
-        //echo("Welcome, $uFirstName.<br>");
-        #echo("You have $homeworkCount Tasks created.");
+
         $homework = $conn->query("SELECT hId, bId, hPageNr, hExerciseNr, hDeadline, hSubject, hNotes, hDone FROM homework WHERE uId = $uId && DATEDIFF(hDeadline,CURDATE()) > -3 && hDone = 0");
         $collumn = 1;
         ?>
@@ -149,6 +152,7 @@ if (isset($_COOKIE["uId"]) && isset($_COOKIE["uSessionKey"])) {
                 ?>
                 <div class="card-action">
                     <a href="markAsDone.php?hId=<?php echo($hId); ?>&continue=<?php echo($_SERVER['REQUEST_URI']); ?>">DONE</a>
+                    <a href="#">GET HELP</a>
                 </div>
 
 
@@ -169,6 +173,3 @@ if (isset($_COOKIE["uId"]) && isset($_COOKIE["uSessionKey"])) {
 
 
 ?>
-
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/js/materialize.min.js"></script>
