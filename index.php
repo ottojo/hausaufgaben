@@ -9,6 +9,20 @@
         .inline.material-icons {
             display: inline;
         }
+
+        .promo i {
+            margin: 40px 0;
+            color: #ee6e73;
+            font-size: 7rem;
+            display: block;
+        }
+
+        .promo-caption {
+            font-size: 1.7rem;
+            font-weight: 500;
+            margin-top: 5px;
+            margin-bottom: 0;
+        }
     </style>
     <!--Import materialize.css-->
     <link type="text/css" rel="stylesheet"
@@ -79,6 +93,42 @@
     </nav>
 
 
+<div class="container">
+    <div class="row">
+        <h3 class="col s12 light center header" style="color: #ee6e73;">Track all your Homework</h3>
+    </div>
+
+    <div class="row">
+        <div class="col s12 m4">
+            <div class="center promo">
+                <i class="material-icons">group</i>
+                <p class="promo-caption">Get help easily</p>
+                <p class="light center">If you specify which book and page an exercise is from, you can see which
+                    friends have already completed this task and ask them for help.</p>
+            </div>
+        </div>
+
+        <div class="col s12 m4">
+            <div class="center promo">
+                <i class="material-icons">notifications_active</i>
+                <p class="promo-caption">Get notified of upcoming tasks</p>
+                <p class="light center">You can choose to get an email notification for your tasks. It's possible to
+                    specify how much time before the deadline you want to be notified and you can set a default time to
+                    send the notifications.</p>
+            </div>
+        </div>
+
+        <div class="col s12 m4">
+            <div class="center promo">
+                <i class="material-icons">backup</i>
+                <p class="promo-caption">All data stored in the cloud</p>
+                <p class="light center">Your tasks are stored on our servers in the cloud, so you are able to access
+                    your data from any device, just your login required. Using a custom session- and loginsystem your
+                    data is always safe.</p>
+            </div>
+        </div>
+    </div>
+</div>
 <!-- Modal for Signup -->
 <div class="modal" id="signup">
     <div class="modal-content">
