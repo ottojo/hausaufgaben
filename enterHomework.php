@@ -41,7 +41,7 @@ if (hasHomeworkData()) {
     $hDeadline = $_POST["hDeadline"];   //26 January, 2016
 
     $deadlineInt = strtotime($hDeadline);
-    $hDeadline = date("Y-m-d H:i:s", $deadlineInt);
+    $hDeadline = date("Y-m-d", $deadlineInt);
 
     $hSubject = $_POST["hSubject"];
     $hNotes = $_POST["hNotes"];
