@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Erstellungszeit: 08. Jan 2016 um 16:38
+-- Erstellungszeit: 11. Jan 2016 um 17:42
 -- Server-Version: 5.6.26
 -- PHP-Version: 5.6.12
 
@@ -31,7 +31,7 @@ CREATE TABLE IF NOT EXISTS `books` (
   `bTitle` TEXT    NOT NULL
 )
   ENGINE = InnoDB
-  AUTO_INCREMENT = 2
+  AUTO_INCREMENT = 4
   DEFAULT CHARSET = latin1;
 
 --
@@ -39,7 +39,9 @@ CREATE TABLE IF NOT EXISTS `books` (
 --
 
 INSERT INTO `books` (`bId`, `bTitle`) VALUES
-  (1, 'Mathematik Oberstufe Band 12');
+  (1, 'Mathematik Oberstufe Band 12'),
+  (2, 'Informatik Oberstufe'),
+  (3, 'Deutschbuch');
 
 -- --------------------------------------------------------
 
@@ -48,19 +50,19 @@ INSERT INTO `books` (`bId`, `bTitle`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `homework` (
-  `uId`           int(11)    NOT NULL,
+  `uId`           INT(11)    NOT NULL,
   `hId`           INT(11)    NOT NULL,
   `bId`           INT(11)             DEFAULT NULL,
   `hPageNr`       INT(11)             DEFAULT NULL,
   `hExerciseNr`   INT(11)             DEFAULT NULL,
-  `hCreationTime` timestamp  NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `hDeadline`     datetime   NOT NULL,
-  `hSubject`      text       NOT NULL,
-  `hNotes`        text       NOT NULL,
+  `hCreationTime` TIMESTAMP  NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `hDeadline`     DATETIME   NOT NULL,
+  `hSubject`      TEXT       NOT NULL,
+  `hNotes`        TEXT       NOT NULL,
   `hDone`         TINYINT(1) NOT NULL DEFAULT '0'
 )
   ENGINE = InnoDB
-  AUTO_INCREMENT = 10
+  AUTO_INCREMENT = 36
   DEFAULT CHARSET = latin1;
 
 --
@@ -68,20 +70,13 @@ CREATE TABLE IF NOT EXISTS `homework` (
 --
 
 INSERT INTO `homework` (`uId`, `hId`, `bId`, `hPageNr`, `hExerciseNr`, `hCreationTime`, `hDeadline`, `hSubject`, `hNotes`, `hDone`) VALUES
-  (2, 1, 1, 10, 4, '2015-11-24 15:39:03', '2016-02-13 00:00:00', 'Mathe', 'Nur A und B', 0),
-  (2, 3, NULL, NULL, NULL, '2016-01-08 13:53:54', '2016-07-14 00:00:00', 'Informatik',
-   'Simulation des Urknalls in Whitespace schreiben', 0),
-  (2, 4, NULL, NULL, NULL, '2016-01-08 13:53:54', '2016-07-14 00:00:00', 'Informatik',
-   'Simulation des Bla in Whitespace schreiben', 0),
-  (2, 5, NULL, NULL, NULL, '2016-01-08 13:53:54', '2016-07-14 00:00:00', 'Informatik',
-   'Simulation des Schule in Whitespace schreiben', 0),
-  (2, 6, NULL, NULL, NULL, '2016-01-08 13:53:54', '2016-07-14 00:00:00', 'Informatik',
-   'Simulation des Käsimir in Whitespace schreiben', 0),
-  (2, 7, NULL, NULL, NULL, '2016-01-08 13:53:54', '2016-07-14 00:00:00', 'Informatik',
-   'Simulation des Informatik in Whitespace schreiben', 0),
-  (2, 8, NULL, NULL, NULL, '2016-01-08 13:53:54', '2016-07-14 00:00:00', 'Informatik',
-   'Simulation des Computer in Whitespace schreiben', 0),
-  (2, 9, 1, 2, 3, '2016-01-08 13:53:54', '2016-07-14 00:00:00', 'Informatik', '', 0);
+  (7, 30, 1, 5, 6, '2016-01-11 16:34:49', '2016-01-13 00:00:00', 'Mathe', 'Aufgaben A und B', 0),
+  (7, 31, NULL, NULL, NULL, '2016-01-11 16:35:17', '2016-01-13 00:00:00', 'Mathe',
+   'Arbeitsblatt zur GLF\r\nRotationskÃ¶rper', 0),
+  (7, 32, NULL, NULL, NULL, '2016-01-11 16:35:49', '2016-08-11 00:00:00', 'Informatik', 'GLF', 0),
+  (6, 33, 1, 5, 6, '2016-01-11 16:36:50', '2016-01-15 00:00:00', 'Math', 'PIN for nukes is 1234', 1),
+  (6, 34, NULL, NULL, NULL, '2016-01-11 16:37:29', '2016-01-27 00:00:00', 'Politics', 'Speech about gun control', 0),
+  (5, 35, 1, 5, 6, '2016-01-11 16:38:31', '2016-02-24 00:00:00', 'Math', 'IMPORTANT!!!11!    New Topic', 1);
 
 -- --------------------------------------------------------
 
@@ -91,14 +86,14 @@ INSERT INTO `homework` (`uId`, `hId`, `bId`, `hPageNr`, `hExerciseNr`, `hCreatio
 
 CREATE TABLE IF NOT EXISTS `users` (
   `uId`             INT(11)      NOT NULL,
-  `uFirstName`      varchar(255) DEFAULT NULL,
-  `uLastName`       varchar(255) DEFAULT NULL,
-  `uEmail`          varchar(255) DEFAULT NULL,
+  `uFirstName`      VARCHAR(255) DEFAULT NULL,
+  `uLastName`       VARCHAR(255) DEFAULT NULL,
+  `uEmail`          VARCHAR(255) DEFAULT NULL,
   `uHashedPassword` varchar(255) DEFAULT NULL,
   `uSessionKey`     VARCHAR(255) NOT NULL
 )
   ENGINE = InnoDB
-  AUTO_INCREMENT = 3
+  AUTO_INCREMENT = 8
   DEFAULT CHARSET = latin1;
 
 --
@@ -106,9 +101,12 @@ CREATE TABLE IF NOT EXISTS `users` (
 --
 
 INSERT INTO `users` (`uId`, `uFirstName`, `uLastName`, `uEmail`, `uHashedPassword`, `uSessionKey`) VALUES
-(1, 'Hans', 'Wurst', 'a@b.c', '$2y$10$iDxajeIPcXEhcDydBfQyZOl3cAbHJFCrkN64OqbD9o7v1NgVf/moG', ''),
-  (2, 'Jonas', 'Otto', 'jottosmail@gmail.com', '$2y$10$baPK0amca8jlCD630y5MKuLc0YwqBl.TfyH67G7AvxFsAiAwHAh8u',
-   '$2y$10$XIVN4cVbjcEvjeWaME5BWe.p0S2nur2f0p8tdpk4m775dAMNdDoJu');
+  (5, 'Bill', 'Gates', 'bill.gates@gmail.com', '$2y$10$ItpsPJZza/lVj4eQ8d2QjuAnPHU8P1O.p0XhVlC5i027Ml50uVaNW',
+   '$2y$10$vER9xutM8tGrH9Ps3.Uur.mCmNh8Y/E1iaveJ/02BQUNyXs57iENO'),
+  (6, 'Barack', 'Obama', 'barack.obama@gmail.com', '$2y$10$EVuuVdOV/ag8DAeQcgtj/em4Tot14pFMBqCNEkDp7bxzDE./icJ5W',
+   '$2y$10$MUbykz3qXkl9awFRbl4QqerSIp0m1FYh7fc.xnoEoGRugxIzEgZXq'),
+  (7, 'Jonas', 'Otto', 'jottosmail@gmail.com', '$2y$10$rGWYO5kE.OK3esmqhC0iVuLxxKlT2OKAMzscb/Asv2.g5ISh6GTdC',
+   '$2y$10$DFhmj8z2JTIJ/DNfVzTBeu47ICZe/P32.gX5MRjdnXxfLPkPze9Ky');
 
 --
 -- Indizes der exportierten Tabellen
@@ -140,17 +138,17 @@ ADD PRIMARY KEY (`uId`);
 -- AUTO_INCREMENT für Tabelle `books`
 --
 ALTER TABLE `books`
-MODIFY `bId` INT(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT = 2;
+MODIFY `bId` INT(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT = 4;
 --
 -- AUTO_INCREMENT für Tabelle `homework`
 --
 ALTER TABLE `homework`
-MODIFY `hId` INT(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT = 10;
+MODIFY `hId` INT(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT = 36;
 --
 -- AUTO_INCREMENT für Tabelle `users`
 --
 ALTER TABLE `users`
-MODIFY `uId` INT(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT = 3;
+MODIFY `uId` INT(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT = 8;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
