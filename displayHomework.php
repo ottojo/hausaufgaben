@@ -62,7 +62,6 @@
         }
 
 
-
     </script>
 
 
@@ -120,71 +119,113 @@ if (isset($_COOKIE["uId"]) && isset($_COOKIE["uSessionKey"])) {
     if (password_verify($_COOKIE["uSessionKey"], $uSessionKey)) {
 
 
-        #LOGGED IN
+#LOGGED IN
 
         $homework = $conn->query("SELECT hId, bId, hPageNr, hExerciseNr, hDeadline, hSubject, hNotes, hDone FROM homework WHERE uId = $uId && DATEDIFF(hDeadline,CURDATE()) > -3 && hDone = 0 ORDER BY hDeadline");
         $collumn = 1;
         ?>
-        <row>
-            <?php
-            while ($result = $homework->fetch_array()) {
-
-                if ($collumn == 1) {
-                    echo("</div><div class =\"row\">");
-                    $collumn++;
-                } else if ($collumn != 1 && $collumn != 4) {
-                    $collumn++;
-                } else if ($collumn == 4) {
-                    $collumn = 1;
-                }
-
-
-                $hSubject = $result["hSubject"];
-                $hNotes = $result["hNotes"];
-                $hId = $result["hId"];
-                $deadline = strtotime($result["hDeadline"]);
-                $deadlineString = date('d.m.Y', $deadline);
-
-
-                echo("<div class=\"col s3\"><div class=\"card blue-grey darken-1 hoverable\"><div class=\"card-content white-text\">");
-
-                echo("<row>");
-                echo("<span class=\"col s5 card-title\" style=\"padding: 0;\">$hSubject</span>");
-                echo("<span class=\"col s7 card-title right-align\">$deadlineString</span>");
-                echo("</row>");
-                if ($result["bId"] != "" && $result["hPageNr"] != "" && $result["hExerciseNr"] != "") {
-                    $bId = $result["bId"];
-                    $pageNr = $result["hPageNr"];
-                    $exerciseNr = $result["hExerciseNr"];
-                    $book = $conn->query("SELECT bTitle FROM books WHERE bId = $bId");
-                    $bookResult = $book->fetch_array();
-                    $bookTitle = $bookResult["bTitle"];
-
-                    echo("<br><b>$bookTitle</b>");#
-                    echo("<br>Page Nr. $pageNr");
-                    echo("<br>Exercise Nr. $exerciseNr");
-
-                }
-
-
-                if ($hNotes != "")
-                    echo("<p><b>My Notes:</b><br>$hNotes</p>");
-
-                echo("</div>");//card-content
-
-                ?>
-                <div class="card-action">
-                    <a href="markAsDone.php?hId=<?php echo($hId); ?>&continue=<?php echo($_SERVER['REQUEST_URI']); ?>">DONE</a>
-                    <a href="#">GET HELP</a>
-                </div>
-
-
-                <?php echo("</div>");
-                echo("</div>");
-
-            } ?>
-        </row>
         <?php
+        while ($result = $homework->fetch_array()) {
+
+            if ($collumn == 1) {
+                echo("</div><div class =\"row\">");
+                $collumn++;
+            } else if ($collumn != 1 && $collumn != 4) {
+                $collumn++;
+            } else if ($collumn == 4) {
+                $collumn = 1;
+            }
+
+
+            $hSubject = $result["hSubject"];
+            $hNotes = $result["hNotes"];
+            $hId = $result["hId"];
+            $deadline = strtotime($result["hDeadline"]);
+            $deadlineString = date('d.m.Y', $deadline);
+
+
+            echo("<div class=\"col s3\"><div class=\"card blue-grey darken-1 hoverable\"><div class=\"card-content white-text\">");
+
+            echo("<span class=\"col s5 card-title\" style=\"padding: 0;\">$hSubject</span>");
+            echo("<span class=\"col s7 card-title right-align\">$deadlineString</span>");
+            if ($result["bId"] != "" && $result["hPageNr"] != "" && $result["hExerciseNr"] != "") {
+                $bId = $result["bId"];
+                $pageNr = $result["hPageNr"];
+                $exerciseNr = $result["hExerciseNr"];
+                $book = $conn->query("SELECT bTitle FROM books WHERE bId = $bId");
+                $bookResult = $book->fetch_array();
+                $bookTitle = $bookResult["bTitle"];
+
+                echo("<br><b>$bookTitle</b>");#
+                echo("<br>Page Nr. $pageNr");
+                echo("<br>Exercise Nr. $exerciseNr");
+
+            }
+
+
+            if ($hNotes != "")
+                echo("<p><b>My Notes:</b><br>$hNotes</p>");
+
+            echo("</div>");//card-content
+
+            ?>
+            <div class="card-action">
+                <a href="markAsDone.php?hId=<?php echo($hId); ?>&continue=<?php echo($_SERVER['REQUEST_URI']); ?>">DONE</a>
+                <?php
+                if ($result["bId"] != "")
+                    echo("<a class= \"modal-trigger\" href=\"#help_hId_$hId\">GET HELP</a>");
+                ?>
+
+            </div>
+
+
+            <?php echo("</div>");
+            echo("</div>");
+
+        }
+        echo("</div><!--after while--> ");
+        $hIds = $conn->query("SELECT hId, bId, hPageNr, hExerciseNr FROM homework WHERE uId = $uId && DATEDIFF(hDeadline,CURDATE()) > -3 && hDone = 0 && bId IS NOT NULL ORDER BY hDeadline");
+        while ($homeworkResult = $hIds->fetch_array()) {
+            //echo("starting helpers get");
+            $bookId = $homeworkResult["bId"];
+            $pageNr = $homeworkResult["hPageNr"];
+            $exerciseNr = $homeworkResult["hExerciseNr"];
+            $helpersResult = $conn->query("SELECT DISTINCT homework.uId, users.uFirstName, users.uLastName, users.uEmail FROM homework, users WHERE bId = $bookId && hPageNr = $pageNr && hExerciseNr = $exerciseNr && homework.uId = users.uId && homework.hDone = 1 && users.uId != $uId");
+
+            ?>
+            <!-- HELP -->
+            <div class="modal" id="help_hId_<?php echo($homeworkResult["hId"]); ?>">
+                <div class="modal-content">
+                    <h4>Get Help</h4>
+                    <div class="container">
+                        <?php
+                        if ($helpersResult->num_rows > 0) {
+                        echo("<div class=\"collection\" style=\"margin-bottom: 0;\">");
+                        while ($helper = $helpersResult->fetch_array()) {
+                            $email = $helper["uEmail"];
+                            $name = $helper["uFirstName"] . " " . $helper["uLastName"];
+                            echo("<a href=\"mailto:$email\" class=\"collection-item\">$name <i class=\"material-icons right right-align\">send</i></a>");
+                        }
+                        ?>
+                    </div>
+                </div>
+                <?php
+
+
+                } else {
+                    echo("<h5 class=\"center-align\">Nobody has completed this exercise yet.</h5>");
+                }
+                ?>
+
+            </div>
+            <div class="modal-footer">
+                <button class="modal-action modal-close btn waves-effect waves-light">Close
+                </button>
+            </div>
+            </div>
+            </div>
+            <?php
+        }
 
 
     } else {
@@ -224,7 +265,8 @@ if (isset($_COOKIE["uId"]) && isset($_COOKIE["uSessionKey"])) {
                     <label>Page</label>
                 </div>
                 <div class="input-field col s2">
-                    <input name="hExerciseNr" id="exerciseSelect" type="number" value="1" min="1" disabled="disabled">
+                    <input name="hExerciseNr" id="exerciseSelect" type="number" value="1" min="1"
+                           disabled="disabled">
                     <label>Exercise Nr</label>
                 </div>
             </div>
@@ -258,3 +300,5 @@ if (isset($_COOKIE["uId"]) && isset($_COOKIE["uSessionKey"])) {
         </form>
     </div>
 </div>
+
+
