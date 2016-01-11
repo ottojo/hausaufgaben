@@ -200,7 +200,7 @@ if (isset($_COOKIE["uId"]) && isset($_COOKIE["uSessionKey"])) {
                     <div class="container">
                         <?php
                         if ($helpersResult->num_rows > 0) {
-                        echo("<div class=\"collection\" style=\"margin-bottom: 0;\">");
+                        echo("<div class=\"collection\" style=\"margin-bottom: auto;\">");
                         while ($helper = $helpersResult->fetch_array()) {
                             $email = $helper["uEmail"];
                             $name = $helper["uFirstName"] . " " . $helper["uLastName"];
