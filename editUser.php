@@ -49,7 +49,6 @@
         <ul class="valign-wrapper right hide-on-med-and-down">
 
             <li><a href="displayHomework.php">Homework</a></li>
-            <li><a href="enterHomework.php">New Homework</a></li>
             <li class="active"><a href="editUser.php">Profile</a></li>
 
             <?php
