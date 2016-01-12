@@ -61,33 +61,33 @@
 
 <!-- Dropdown Structure -->
 
-    <nav>
-        <div class="nav-wrapper">
-            <i class="inline material-icons">book</i>
-            <a href="index.php" class="brand-logo">&nbsp;Hausaufgaben</a>
-            <ul class="valign-wrapper right hide-on-med-and-down">
+<nav>
+    <div class="nav-wrapper">
+        <i class="inline material-icons">book</i>
+        <a href="index.php" class="brand-logo">&nbsp;Hausaufgaben</a>
+        <ul class=" right">
 
-                <li><a href="displayHomework.php">Homework</a></li>
-                <li><a href="editUser.php">Profile</a></li>
+            <li><a href="displayHomework.php">Homework</a></li>
+            <li><a href="editUser.php"><i class="inline waves-effect waves-light  material-icons">perm_identity</i></a></li>
 
-                <?php
-                if ((!isset($_COOKIE["uSessionKey"])) || $_COOKIE["uSessionKey"] == "-") {
-                    ?>
-                    <li><a class="valign waves-effect waves-light btn modal-trigger" href="#login">Login</a></li>
-                    <li><a class="valign waves-effect waves-light btn modal-trigger" href="#signup">Sign up</a>
-                    </li><?php
-                } else {
-                    ?>
-                    <li><a class="valign waves-effect waves-light btn modal-trigger"
-                           href="logout.php?continue=index.php">Logout</a></li>
-                    <?php
-                }
+            <?php
+            if ((!isset($_COOKIE["uSessionKey"])) || $_COOKIE["uSessionKey"] == "-") {
                 ?>
+                <li><a class="inline  waves-effect waves-light btn modal-trigger" href="#login">Login</a></li>
+                <li><a class="inline  waves-effect waves-light btn modal-trigger" href="#signup">Sign up</a>
+                </li><?php
+            } else {
+                ?>
+                <li><a class="inline  waves-effect waves-light btn modal-trigger"
+                       href="logout.php?continue=index.php">Logout</a></li>
+                <?php
+            }
+            ?>
 
 
-            </ul>
-        </div>
-    </nav>
+        </ul>
+    </div>
+</nav>
 
 
 <div class="container">

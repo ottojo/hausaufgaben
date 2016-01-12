@@ -73,20 +73,21 @@
     <div class="nav-wrapper">
         <i class="inline material-icons">book</i>
         <a href="index.php" class="brand-logo">&nbsp;Hausaufgaben</a>
-        <ul class="valign-wrapper right hide-on-med-and-down">
+        <ul class="valign-wrapper right">
 
-            <li class="active"><a href="displayHomework.php">Homework</a></li>
-            <li><a href="editUser.php">Profile</a></li>
+            <li><a href="displayHomework.php">Homework</a></li>
+            <li><a href="editUser.php"><i class="inline material-icons">perm_identity</i></a></li>
 
             <?php
             if ((!isset($_COOKIE["uSessionKey"])) || $_COOKIE["uSessionKey"] == "-") {
                 ?>
-                <li><a class="valign waves-effect waves-light btn modal-trigger" href="#login">Login</a></li>
-                <li><a class="valign waves-effect waves-light btn modal-trigger" href="#signup">Sign up</a></li><?php
+                <li><a class="inline valign waves-effect waves-light btn modal-trigger" href="#login">Login</a></li>
+                <li><a class="inline valign waves-effect waves-light btn modal-trigger" href="#signup">Sign up</a>
+                </li><?php
             } else {
                 ?>
-                <li><a class="valign waves-effect waves-light btn modal-trigger" href="logout.php?continue=index.php">Logout</a>
-                </li>
+                <li><a class="inline valign waves-effect waves-light btn modal-trigger"
+                       href="logout.php?continue=index.php">Logout</a></li>
                 <?php
             }
             ?>
@@ -95,6 +96,7 @@
         </ul>
     </div>
 </nav>
+
 
 
 <div class="fixed-action-btn" style="bottom: 45px; right: 24px;">
