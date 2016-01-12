@@ -96,7 +96,7 @@
 
             <div class="container">
 
-                <h4 class="center"><?php echo ("Welcome, " . $uFirstName . ". These are your profile settings.") ?> </h1>
+                <h4 class="center"><?php echo ("Welcome, " . $uFirstName . ". These are your profile settings.") ?> </h4>
 
                     <br>
 
